@@ -10,7 +10,7 @@ import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
 import ImageModal from './components/ImageModal/ImageModal';
 import './App.css';
 
-const API_KEY = 'TaQDrKEIdojPl19--8Vl3ti0lQTtq1sFNIy2BNfJKG8'; 
+const API_KEY = 'TtF8uy6l8DULmnUXCzRWzP2EORjsKWsTmIzx4Db_y94'; 
 const BASE_URL = 'https://api.unsplash.com/search/photos';
 
 const App = () => {

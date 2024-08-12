@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { Toaster, toast } from 'react-hot-toast';
 import SearchBar from './components/SearchBar/SearchBar';
@@ -22,7 +22,7 @@ const App = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const fetchImages = async () => {
+  const fetchImages = useCallback(async () => {
     if (!query) return;
 
     setLoading(true);
@@ -46,15 +46,16 @@ const App = () => {
 
       setImages((prevImages) => [...prevImages, ...newImages]);
     } catch (err) {
+      console.error('Error fetching images:', err);
       setError('Something went wrong. Please try again.');
     } finally {
       setLoading(false);
     }
-  };
+  }, [query, page]);
 
   useEffect(() => {
     fetchImages();
-  }, [page, query]); // Ensure that fetchImages runs when query or page changes
+  }, [fetchImages]);
 
   const handleSearchSubmit = (newQuery) => {
     if (newQuery !== query) {
